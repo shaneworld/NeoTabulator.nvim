@@ -9,7 +9,7 @@ local mode_options = {
     right = "r"
 }
 
-local error_message = "Usage: CreateTable [ALIGNMENT] TABLE_SIZE"
+local error_message = "Usage: CreateTable [ALIGNMENT] <height>x<width>"
 
 -- Generate table content and pass to create_table()
 local function generate_table_content(mode, rows, cols)
@@ -26,7 +26,7 @@ local function generate_table_content(mode, rows, cols)
     local table_content = { header, separator }
 
     -- Generate table
-    for _ = 1, rows do
+    for _ = 1, rows-1 do
         table.insert(table_content, "| " .. string.rep("item | ", cols))
     end
 
@@ -156,15 +156,16 @@ end
 -- Default setup
 local function setup(opts)
     options = vim.tbl_extend("force", {
-        -- default mode is center alignment
-        -- Option value: "l", "r", "c"
+        -- Alignment
+        -- Default value: center
+        -- Options: center, left, right
         mode = mode_options.center,
-        -- keymap to quick open the command CreateTable and wait for you to input the params
-        ativate_command = "<leader>ta",
+        -- Keymaps
+        create_table = "<leader>ta",
         format_normal = "<leader>fn",
         format_visual = "<leader>fv"
     }, opts or {})
-    vim.keymap.set("n", options.ativate_command, ":CreateTable ", {})
+    vim.keymap.set("n", options.create_table, ":CreateTable ", {})
     vim.keymap.set("n", options.format_normal, autoformat_normal, {})
     vim.keymap.set("v", options.format_visual, autoformat_visual, {})
 end
