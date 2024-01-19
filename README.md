@@ -23,17 +23,20 @@ Using [lazy](https://github.com/folke/lazy.nvim):
 ```lua
 {
     "shaneworld/NeoTabulator.nvim",
-    require("NeoTabulator").setup({
-        -- Alignment
-        -- Default value: center
-        -- Options: center, left, right
-        mode = "c",
-        -- Keymaps
-        -- Below are default values
-        create_table = "<leader>ta",
-        format_normal = "<leader>fn",
-        format_visual = "<leader>fv"
-    })
+    ft = "markdown",
+    config = function()
+        require("NeoTabulator").setup({
+            -- Alignment
+            -- Default value: center
+            -- Options: center, left, right
+            mode = "c",
+            -- Keymaps
+            -- Below are default values
+            create_table = "<leader>ta",
+            format_normal = "<leader>fn",
+            format_visual = "<leader>fv"
+        })
+    end
 }
 ```
 
