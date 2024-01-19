@@ -1,6 +1,6 @@
 -- Author: Shane
 -- Date: 2024-01-19 16:49
-local options = {}
+local neotabulator = {}
 
 -- All optional alignment modes
 local mode_options = {
@@ -155,7 +155,7 @@ end
 
 -- Default setup
 local function setup(opts)
-    options = vim.tbl_extend("force", {
+    neotabulator = vim.tbl_extend("force", {
         -- Alignment
         -- Default value: center
         -- Options: center, left, right
@@ -165,9 +165,9 @@ local function setup(opts)
         format_normal = "<leader>fn",
         format_visual = "<leader>fv"
     }, opts or {})
-    vim.keymap.set("n", options.create_table, ":CreateTable ", {})
-    vim.keymap.set("n", options.format_normal, autoformat_normal, {})
-    vim.keymap.set("v", options.format_visual, autoformat_visual, {})
+    vim.keymap.set("n", neotabulator.create_table, ":CreateTable ", {})
+    vim.keymap.set("n", neotabulator.format_normal, autoformat_normal, {})
+    vim.keymap.set("v", neotabulator.format_visual, autoformat_visual, {})
 end
 
 -- Register command
@@ -183,11 +183,11 @@ vim.api.nvim_create_user_command('CreateTable', function(params)
     if length == 1 then
         args = vim.split(params.args, "x")
     elseif length == 2 then
-        options.mode = parameter[1]
+        neotabulator.mode = parameter[1]
         -- Check if mode is valid
         local contain = false
         for _, value in pairs(mode_options) do
-            if options.mode == value then
+            if neotabulator.mode == value then
                 contain = true
                 break
             end
@@ -207,7 +207,7 @@ vim.api.nvim_create_user_command('CreateTable', function(params)
     -- Call create_table function
     local rows = tonumber(args[1])
     local cols = tonumber(args[2])
-    create_table(options.mode, rows, cols)
+    create_table(neotabulator.mode, rows, cols)
 
 end, { nargs = 1 })
 

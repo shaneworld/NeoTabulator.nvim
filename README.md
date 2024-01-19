@@ -27,7 +27,7 @@ Using [lazy](https://github.com/folke/lazy.nvim):
         -- Alignment
         -- Default value: center
         -- Options: center, left, right
-        mode = mode_options.center,
+        mode = "c",
         -- Keymaps
         -- Below are default values
         create_table = "<leader>ta",
