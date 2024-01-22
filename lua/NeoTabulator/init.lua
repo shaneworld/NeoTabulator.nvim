@@ -158,8 +158,8 @@ local function setup(opts)
     neotabulator = vim.tbl_extend("force", {
         -- Alignment
         -- Default value: center
-        -- Options: center, left, right
-        mode = mode_options.center,
+        -- Options: "c", "l", "r"
+        mode = "c",
         -- Keymaps
         create_table = "<leader>ta",
         format_normal = "<leader>fn",
@@ -193,7 +193,7 @@ vim.api.nvim_create_user_command('CreateTable', function(params)
             end
         end
         -- Check if it is the correct format
-        if contain and string.match(parameter[2], "^[%d+x%d+]$") then
+        if contain and string.match(parameter[2], "^(%d+)x(%d+)$") then
             args = vim.split(parameter[2], "x")
         else
             print(error_message)

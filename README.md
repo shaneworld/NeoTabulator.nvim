@@ -28,7 +28,7 @@ Using [lazy](https://github.com/folke/lazy.nvim):
         require("NeoTabulator").setup({
             -- Alignment
             -- Default value: center
-            -- Options: center, left, right
+            -- Options: "c", "l", "r"
             mode = "c",
             -- Keymaps
             -- Below are default values
